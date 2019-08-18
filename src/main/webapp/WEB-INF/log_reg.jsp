@@ -16,7 +16,7 @@
 					<tr>
 						<td>Email:</td>
 						<td>
-							<form:input path="email"/>
+							<form:input path="email"/><br>
 							<form:errors path="email" cssClass="red"/>
 						</td>
 					</tr>
@@ -47,10 +47,20 @@
 		<div id="logBox">
 			<form:form method="POST" action="login" modelAttribute="user">
 			<table>
+			
+				<c:if test="${loginError == true}">
+					<tr>
+						<td colspan="2">
+							<p class="red">
+								Email/password incorrect
+							</p>
+						</td>
+					</tr>
+				</c:if>
 				<tr>
-					<td>Username:</td>
+					<td>Email:</td>
 					<td>
-						<form:input path="username"/>
+						<form:input path="email"/>
 					</td>
 				</tr>
 				<tr>

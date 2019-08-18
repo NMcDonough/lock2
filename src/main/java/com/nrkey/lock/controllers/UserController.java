@@ -13,6 +13,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nrkey.lock.models.User;
@@ -44,7 +45,25 @@ public class UserController {
 		User u = us.registerUser(user);
 		u.setPassword(null);
 		session.setAttribute("user", u.getId());
-		redirectAttributes.addFlashAttribute("flash",new FlashMessage("Category successfully updated!", FlashMessage.Status.SUCCESS));
+		
 		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	public String login(HttpSession session, Model model, @ModelAttribute("user") User user) {
+		if(us.authenticateUser(user.getEmail(), user.getPassword())) {
+			user = us.findByEmail(user.getEmail());
+			Long id = user.getId();
+			model.addAttribute("user", id);
+			session.setAttribute("user", id);
+			System.out.println("Authentication successful.");
+			return "redirect:/";
+		} else {
+			model.addAttribute("loginError", true);
+			model.addAttribute("newUser", new User());
+			user.setPassword(null);
+			model.addAttribute("user", user);
+			return "log_reg.jsp";
+		}
 	}
 }

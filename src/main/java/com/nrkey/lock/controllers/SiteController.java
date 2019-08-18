@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.nrkey.lock.models.User;
 import com.nrkey.lock.services.UserService;
@@ -25,12 +26,13 @@ public class SiteController {
 			System.out.println("User found in session: " + userId);
 			User user = us.findUserById(userId);
 			user.setPassword(null);
+			System.out.println(user.getUsername());
 			model.addAttribute("user", user);
 		}
 		return "index.jsp";
 	}
 	
-	@RequestMapping("/login")
+	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String logreg(Model model) {
 		model.addAttribute("newUser", new User());
 		model.addAttribute("user", new User());

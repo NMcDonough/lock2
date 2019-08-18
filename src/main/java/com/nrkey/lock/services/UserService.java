@@ -41,15 +41,17 @@ public class UserService {
     // authenticate user
     public boolean authenticateUser(String email, String password) {
         // first find the user by email
-        com.nrkey.lock.models.User user = ur.findByEmail(email);
+        User user = ur.findByEmail(email);
         // if we can't find it by email, return false
         if(user == null) {
+        	System.out.println("Authentication failed. Reason: email");
             return false;
         } else {
             // if the passwords match, return true, else, return false
             if(BCrypt.checkpw(password, user.getPassword())) {
                 return true;
             } else {
+            	System.out.println("Authentication failed. Reason: password");
                 return false;
             }
         }
