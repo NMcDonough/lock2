@@ -1,0 +1,18 @@
+.wrapper{
+	display: flex;
+	justify-content: center;
+	alignContent: center;
+	height: 100%;
+	padding-top: 5%;
+}
+
+#boxes{
+	display: flex;
+	width: 40%;
+	justify-content: space-between;
+}
+
+.red {
+	color:red;
+	font-size:10px;
+}
