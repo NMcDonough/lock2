@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,4 +67,23 @@ public class UserController {
 			return "log_reg.jsp";
 		}
 	}
+	
+	@RequestMapping("/profile/{username}")
+	public String profile(HttpSession session, Model model, @PathVariable("username") String username) {
+		User user = us.findByUsername(username);
+		if(user == null) {
+			return "redirect:/";
+		} else {
+			user.setPassword(null);
+			model.addAttribute("userProfile", user);
+			Long userId = (Long) session.getAttribute("user");
+			System.out.println("User found in session: " + userId);
+			if(session.getAttribute("user") != null) {
+				model.addAttribute("user", us.findUserById(userId));
+			}
+			System.out.println(user.getUsername() + " " + user.getCreatedAt());
+			return "profile.jsp";
+		}
+	}
+	
 }

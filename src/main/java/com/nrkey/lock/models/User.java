@@ -12,6 +12,8 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 @Table(name="users")
 public class User {
@@ -36,6 +38,7 @@ public class User {
     private String confirm;
     
     @Column(updatable=false)
+    @CreationTimestamp
     private Date createdAt;
     
     private Date updatedAt;

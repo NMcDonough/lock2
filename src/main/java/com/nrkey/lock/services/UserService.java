@@ -28,6 +28,10 @@ public class UserService {
         return ur.findByEmail(email);
     }
     
+    public User findByUsername(String username) {
+    	return ur.findByUsername(username);
+    }
+    
     // find user by id
     public User findUserById(Long id) {
     	Optional<User> u = ur.findById(id);
