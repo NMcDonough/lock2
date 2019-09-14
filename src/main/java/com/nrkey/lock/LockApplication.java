@@ -12,7 +12,7 @@ public class LockApplication {
 	@Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("classpath:messages");
+        messageSource.setBasename("classpath:messages_en_US");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
@@ -23,6 +23,7 @@ public class LockApplication {
         bean.setValidationMessageSource(messageSource());
         return bean;
     }
+    
 	public static void main(String[] args) {
 		SpringApplication.run(LockApplication.class, args);
 	}

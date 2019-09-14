@@ -1,0 +1,15 @@
+#adminWrapper {
+	display: flex;
+	justify-content: space-evenly;
+	padding: 1%;
+}
+
+#users, #permissions {
+	display: flex;
+	align-content: center;
+	flex-direction: column;
+	justify-content: center;
+	border: 2px solid white;
+	border-radius: 15px;
+	padding: 2%;
+}

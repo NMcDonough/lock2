@@ -1,10 +1,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ include file="titlebar.jsp" %>
 <link rel="stylesheet" href="static/css/logreg.css">
 <div class="wrapper">
 	<div id="boxes">
 		<div id="regBox">
-			<form:form method="POST" action="register" modelAttribute="newUser">
+			<form:form method="POST" action="api/user/register" modelAttribute="newUser">
 				<table>
 					<tr>
 						<td>Username:</td>
@@ -30,7 +29,7 @@
 						<td>Confirm Password:</td>
 						<td>
 							<form:password path="confirm"/>
-							<form:errors path="password" cssClass="red"/>
+							<form:errors id="regPassword" path="password" cssClass="red"/>
 						</td>
 					</tr>
 					<tr>
@@ -45,18 +44,11 @@
 		</div>
 		
 		<div id="logBox">
-			<form:form method="POST" action="login" modelAttribute="user">
+			<form:form method="POST" action="lock/login" modelAttribute="user">
 			<table>
-			
-				<c:if test="${loginError == true}">
-					<tr>
-						<td colspan="2">
-							<p class="red">
-								Email/password incorrect
-							</p>
-						</td>
-					</tr>
-				</c:if>
+				<form:errors path="isActive" cssClass="red" />
+				<form:errors path="email" cssClass="red" />
+				<form:errors path="password" cssClass="red" />
 				<tr>
 					<td>Email:</td>
 					<td>
@@ -66,7 +58,7 @@
 				<tr>
 					<td>Password:</td>
 					<td>
-						<form:password path="password"/>
+						<form:password path="password" />
 					</td>
 				</tr>
 				<tr>

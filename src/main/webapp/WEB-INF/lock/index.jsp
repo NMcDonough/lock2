@@ -9,11 +9,12 @@
   <title>Lock</title>
   <meta name="description" content="A game website">
   <meta name="author" content="Noah McDonough">
-  <link rel="stylesheet" href="static/css/fonts.css">
+  <link rel="stylesheet" href="/static/css/fonts.css">
+  <base href="/lock"/>
 </head>
 
 <body>
 	<%@ include file="titlebar.jsp" %>
-	<h1>Hello world!</h1>
+	<jsp:include page="${page}.jsp" />
 </body>
 </html>
