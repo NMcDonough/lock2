@@ -13,6 +13,14 @@
 				<table>
 					<tr>
 						<td>
+							Account is active
+						</td>
+						<td>
+							<form:checkbox cssClass="form-control" id="isActive" path="isActive" />
+						</td>
+					</tr>
+					<tr>
+						<td>
 							Username:
 						</td>
 						<td>
@@ -38,14 +46,6 @@
 							<form:errors cssClass="red" path="password" />
 						</td>
 					</tr> -->
-					<tr>
-						<td>
-							Account is active
-						</td>
-						<td>
-							<form:checkbox cssClass="form-control" id="isActive" path="isActive" />
-						</td>
-					</tr>
 					<tr>
 						<td>
 							Permissions:
@@ -102,7 +102,8 @@
 	
 	function submitUserEditForm(e) {
 		e.preventDefault();
-		let x = e.path[0][5].value;
+		let x = e.path[0][6].value;
+		console.log(e);
 		$.ajax({
 			url: "http://localhost:8080/api/user/edit/" + x,
 			type: 'put',
