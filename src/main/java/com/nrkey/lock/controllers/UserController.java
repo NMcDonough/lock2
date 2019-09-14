@@ -56,8 +56,6 @@ public class UserController {
 			e1.printStackTrace();
 			json = "error";
 		}
-		System.out.println(json);
-		System.out.println(user.getPermission());
 		user.setPassword(null);
 		return json;
 	}

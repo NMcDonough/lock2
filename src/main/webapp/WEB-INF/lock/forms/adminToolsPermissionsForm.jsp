@@ -129,7 +129,6 @@
 			url="http://localhost:8080/api/permissions/delete/" + e.target.value,
 			method="post"
 		).done(res => {
-			console.log(res);
 		});
 	}
 	function getPermission(e){
@@ -182,7 +181,6 @@
 	
 	function showPermissionsForm(e) {
 		e.preventDefault();
-		console.log(e.target.value)
 		switch(e.target.value){
 		
 		case "new":

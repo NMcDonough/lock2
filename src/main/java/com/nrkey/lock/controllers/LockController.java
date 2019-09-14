@@ -90,10 +90,8 @@ public class LockController {
 	public String about(HttpSession session, Model model) {
 		if(session.getAttribute("user") != null) {
 			Long userId = (Long) session.getAttribute("user");
-			System.out.println("User found in session: " + userId);
 			User user = us.findUserById(userId);
 			user.setPassword(null);
-			System.out.println(user.getUsername());
 			model.addAttribute("user", user);
 		}
 		model.addAttribute("page","about");
@@ -127,11 +125,9 @@ public class LockController {
 			user.setPassword(null);
 			model.addAttribute("userProfile", user);
 			Long userId = (Long) session.getAttribute("user");
-			System.out.println("User found in session: " + userId);
 			if(session.getAttribute("user") != null) {
 				model.addAttribute("user", us.findUserById(userId));
 			}
-			System.out.println(this.hs.findUserScores(user).size());
 			model.addAttribute("scores", this.hs.findUserScores(user));
 			model.addAttribute("page","profile");
 			return BASE_ROUTE + "index.jsp";
